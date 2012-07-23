@@ -4,20 +4,22 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "base"                 
+  config.vm.box = "precise64"                 
 
   # Forward guest port 80 to host port 4567 and name the mapping "web"
-  config.vm.forward_port("web", 80, 4567)   
+  config.vm.forward_port  80, 4567  
   
-  # This path will be expanded relative to the project directory
-  config.chef.cookbooks_path = "cookbooks"
   # ensure the latest packages
-  config.chef.add_recipe("apt") 
+  config.vm.provision :chef_solo do |chef|  
+
+    # This path will be expanded relative to the project directory
+    chef.cookbooks_path = "cookbooks"
   
-  #this recipe we want to run
-  config.chef.add_recipe("wordpress_demo") 
+    #this recipe we want to run
+    #chef.add_recipe("apt") 
+    chef.add_recipe("wordpress_demo") 
   
-  config.chef.json.merge!({
+    chef.json.merge!({
       :mysql => {
         :server_debian_password => "secure_password",
         :server_root_password => "secure_password",
@@ -26,6 +28,5 @@ Vagrant::Config.run do |config|
       :wordpress_hostname => "wordpress.smackaho.st"
     })
   
-  # we use chef-solo to provision stuff
-  config.vm.provisioner = :chef_solo
+  end
 end
