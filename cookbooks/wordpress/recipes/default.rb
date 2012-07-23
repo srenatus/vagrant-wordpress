@@ -27,7 +27,7 @@ end
 server_port = ""
 if node.has_key?("wordpress_hostname")
   server_fqdn = node.wordpress_hostname 
-  server_port = ":#{node[:vagrant][:config][:vm][:forwarded_ports][:web][:hostport]}"
+  server_port = ":4567"
 end  
 
 remote_file "#{Chef::Config[:file_cache_path]}/wordpress-#{node[:wordpress][:version]}.tar.gz" do
