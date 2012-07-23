@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
         :server_root_password => "secure_password",
         :server_repl_password => "secure_password"
       },
-      :wordpress_hostname => "wordpress.smackaho.st",
+      :wordpress_hostname => "wordpress.42foo.com",
       "build_essential" => {
         "compiletime" => true
       }
