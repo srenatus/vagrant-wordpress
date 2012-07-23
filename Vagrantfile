@@ -13,11 +13,15 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|  
 
     # This path will be expanded relative to the project directory
-    chef.cookbooks_path = "cookbooks"
+    chef.cookbooks_path = "cookbooks" 
+    chef.roles_path = "roles"
+    
   
     #this recipe we want to run
     #chef.add_recipe("apt") 
-    chef.add_recipe("wordpress_demo") 
+    chef.add_role("base")
+    chef.add_recipe("wordpress_demo")  
+    
   
     chef.json.merge!({
       :mysql => {
@@ -25,7 +29,11 @@ Vagrant::Config.run do |config|
         :server_root_password => "secure_password",
         :server_repl_password => "secure_password"
       },
-      :wordpress_hostname => "wordpress.smackaho.st"
+      :wordpress_hostname => "wordpress.smackaho.st",
+      "build_essential" => {
+        "compiletime" => true
+      }
+      
     })
   
   end

@@ -1,0 +1,13 @@
+{
+  "name": "base",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "description": "",
+  "run_list": [ 
+    "recipe[build-essential]"
+  ],
+  "override_attributes": {
+  }
+}
