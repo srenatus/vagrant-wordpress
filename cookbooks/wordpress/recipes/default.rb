@@ -110,7 +110,13 @@ template "#{node[:wordpress][:dir]}/wp-config.php" do
   notifies :write, resources(:log => "Navigate to 'http://#{server_fqdn}#{server_port}/wp-admin/install.php' to complete wordpress installation")
 end
 
-include_recipe %w{php::php5 php::module_mysql}
+include_recipe "php" 
+
+package "php5-mysql" do
+  action :install
+end 
+
+include_recipe "apache2::mod_php5"
 
 web_app "wordpress" do
   template "wordpress.conf.erb"
