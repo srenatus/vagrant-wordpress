@@ -17,7 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe "apache2"
+include_recipe "apache2" 
+
+# node.set_unless['wordpress']['db']['password'] = secure_password
+# node.set_unless['wordpress']['keys']['auth'] = secure_password
+# node.set_unless['wordpress']['keys']['secure_auth'] = secure_password
+# node.set_unless['wordpress']['keys']['logged_in'] = secure_password
+# node.set_unless['wordpress']['keys']['nonce'] = secure_password
 
 if node.has_key?("ec2")
   server_fqdn = node.ec2.public_hostname
@@ -54,8 +60,15 @@ execute "mysql-install-wp-privileges" do
   action :nothing
 end
 
-include_recipe "mysql::server"
-require 'rubygems'
+include_recipe "mysql::server"  
+
+
+g = gem_package "mysql" do
+  action :nothing
+end
+ 
+g.run_action(:install)
+ 
 Gem.clear_paths
 require 'mysql'
 
