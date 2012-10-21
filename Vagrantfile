@@ -4,7 +4,11 @@ Vagrant::Config.run do |config|
   # online.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64"                 
+  config.vm.box = "opscode-ubuntu-12.04"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box"                
 
   # Forward guest port 80 to host port 4567 and name the mapping "web"
   config.vm.forward_port  80, 4567  
