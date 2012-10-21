@@ -18,6 +18,7 @@
 #
 
 include_recipe "apache2" 
+include_recipe "mysql::ruby" 
 
 # node.set_unless['wordpress']['db']['password'] = secure_password
 # node.set_unless['wordpress']['keys']['auth'] = secure_password
@@ -52,7 +53,7 @@ end
 execute "untar-wordpress" do
   cwd node[:wordpress][:dir]
   command "tar --strip-components 1 -xzf #{Chef::Config[:file_cache_path]}/wordpress-#{node[:wordpress][:version]}.tar.gz"
-  creates "#{node[:wordpress][:dir]}/wp-settings.php"
+  not_if "grep #{node[:wordpress][:version]} #{node[:wordpress][:dir]}/wp-includes/version.php"
 end
 
 execute "mysql-install-wp-privileges" do
@@ -135,5 +136,5 @@ web_app "wordpress" do
   template "wordpress.conf.erb"
   docroot "#{node[:wordpress][:dir]}"
   server_name server_fqdn
-  server_aliases node.fqdn
+  server_aliases [node.fqdn]
 end
