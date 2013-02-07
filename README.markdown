@@ -2,7 +2,7 @@
 
 ## Using Bundler, Berkshelf and Vagrant to Provision Wordpress
 
-Tested on Debian GNU/Linux with VirtualBox 4.1.18.  Just enter
+Tested on Debian GNU/Linux with VirtualBox 4.1.18 and Chef 11.2.0.  Just enter
 
 	bundle exec vagrant up
 
