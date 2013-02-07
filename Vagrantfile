@@ -1,3 +1,5 @@
+require 'berkshelf/vagrant'
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. For a detailed explanation
   # and listing of configuration options, please view the documentation
@@ -16,17 +18,11 @@ Vagrant::Config.run do |config|
   # ensure the latest packages
   config.vm.provision :chef_solo do |chef|  
 
-    # This path will be expanded relative to the project directory
-    chef.cookbooks_path = "cookbooks" 
-    chef.roles_path = "roles"
-    
-  
     #this recipe we want to run
-    #chef.add_recipe("apt") 
-    chef.add_role("base")
-    chef.add_recipe("wordpress_demo")  
-    
-  
+    #chef.add_recipe("wordpress_demo")  
+    chef.add_recipe("wordpress")  
+    chef.add_recipe("build-essential")  
+
     chef.json.merge!({
       :mysql => {
         :server_debian_password => "secure_password",
