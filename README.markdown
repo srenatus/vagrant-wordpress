@@ -1,13 +1,12 @@
 # Vagrant Box to Showcase Wordpress Deployment
 
-## Install Vagrant and Provision Wordpress
+## Using Bundler, Berkshelf and Vagrant to Provision Wordpress
 
-Install Vagrant first (see [http://vagrantup.com](http://vagrantup.com)).
-Tested on OSX 10.8 with Virtualbox 4.2.1. Just enter 
+Tested on Debian GNU/Linux with VirtualBox 4.1.18.  Just enter
 
-	vagrant up
+	bundle exec vagrant up
 
-in your console. This will start the download of the vagrant box from Opscode (if you not already have it) and immediately provisions a LAMP stack with Wordpress ready to use :-)
+in your console. This will get all dependencies (as stated in `Gemfile`, i.e. [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://www.berkshelf.com)) and start the download of the vagrant box from Opscode (if you not already have it) and immediately provisions a LAMP stack with Wordpress ready to use :-)
 
 ## Use the local Wordpress Deployment
 
@@ -19,7 +18,7 @@ in your Browser.
 
 ## Start Over
 
-	vagrant destroy
-	vagrant up
+	bundle exec vagrant destroy
+	bundle exec vagrant up
 
 
