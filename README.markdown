@@ -6,7 +6,11 @@ Tested on Debian GNU/Linux with VirtualBox 4.1.18.  Just enter
 
 	bundle exec vagrant up
 
-in your console. This will get all dependencies (as stated in `Gemfile`, i.e. [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://www.berkshelf.com)) and start the download of the vagrant box from Opscode (if you not already have it) and immediately provisions a LAMP stack with Wordpress ready to use :-)
+in your console. This will
+
+1. get all dependencies as stated in `Gemfile`, i.e. [Vagrant](http://www.vagrantup.com) and [Berkshelf](http://www.berkshelf.com)
+2. get all needed cookbooks (and their dependencies) as stated in `Berksfile` and
+3. start the download of the vagrant box from Opscode (if you not already have it) and immediately provisions a LAMP stack with Wordpress ready to use :-)
 
 ## Use the local Wordpress Deployment
 
