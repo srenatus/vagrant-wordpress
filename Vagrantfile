@@ -15,6 +15,9 @@ Vagrant::Config.run do |config|
   # Forward guest port 80 to host port 4567 and name the mapping "web"
   config.vm.forward_port  80, 4567  
   
+  # try latest chef
+  config.vm.provision :shell, :inline => "sudo /opt/chef/embedded/bin/gem install chef --no-ri --no-rdoc"
+
   # ensure the latest packages
   config.vm.provision :chef_solo do |chef|  
 
